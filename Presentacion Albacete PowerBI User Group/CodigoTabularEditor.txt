@@ -1,0 +1,8 @@
+foreach(var measure in Selected.Measures) {
+   
+    Model.Tables["Medidas"].AddMeasure(measure.Name+ " YTD","TOTALYTD ( ["+measure.Name+"],Dim_date[date])","Ventas\\Calculos Tiempo\\ytd" );
+    Model.Tables["Medidas"].AddMeasure(measure.Name+ " QTD","TOTALQTD ( ["+measure.Name+"],Dim_date[date])","Ventas\\Calculos Tiempo\\qtd" );
+    Model.Tables["Medidas"].AddMeasure(measure.Name+ " LTM"," CALCULATE(["+measure.Name+"],DATESINPERIOD(Dim_Date[Date],max(Dim_Date[Date]),-12,MONTH))/12","Ventas\\Calculos Tiempo\\ltm" );
+    Model.Tables["Medidas"].AddMeasure(measure.Name+ " PY"," CALCULATE(["+measure.Name+"],SAMEPERIODLASTYEAR(Dim_Date[Date]))","Ventas\\Calculos Tiempo\\PY" );
+ 
+}
